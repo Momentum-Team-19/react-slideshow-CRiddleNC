@@ -1,4 +1,6 @@
 /*index.css*/
+/* *{ border: 2px solid white; */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.3;
@@ -28,8 +30,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 100vh;
-  min-height: 100vh;
 }
 
 h1 {
@@ -67,5 +67,40 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.banner-container {
+    border: 2px solid white;
+    background-image: url(film.movie_banner);
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+}
+
+.body-container {
+    min-height: fit-content;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.posterBox {
+    width: 200px;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.poster {
+    width: 200px;
+}
+
+.infoBox {
+    padding: 10px;
 }
 

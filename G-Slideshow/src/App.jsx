@@ -9,13 +9,13 @@ import filmData from "./film-data.json"
 function App() {
     const [filmIndex, setFilmIndex] = useState(0);
     
-  return (
-    <>
-      <h1>Ghibli Films!</h1>
-        <div>
-          <Slideshow filmIndex={filmIndex} setFilmIndex={setFilmIndex} />
-        </div>
-    </>
+return (
+  <>
+    <h1>Ghibli Films!</h1>
+      <div>
+        <Slideshow filmIndex={filmIndex} setFilmIndex={setFilmIndex} />
+      </div>
+  </>
   );
 }
 

@@ -10,59 +10,53 @@ const [timer, setTimer] = useState(null);
 const [isPaused, setIsPaused] = useState(false);
 
 const autoProgressNextFilm = () => {
-    if (!isPaused) {
-        if (filmIndex < filmData.length - 1) {
-            setFilmIndex((index) => index + 1);
+  if (!isPaused) {
+    if (filmIndex < filmData.length - 1) {
+      setFilmIndex((index) => index + 1);
         } else {
-            setFilmIndex(0);
+          setFilmIndex(0);
         }
-      }
     }
+}
 
 useEffect(() => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-  
-    const newTimer = setTimeout(() => {
-      autoProgressNextFilm();
-    }, 8000);
-  
-    setTimer(newTimer);
-  
-    return () => {
-      clearTimeout(newTimer);
-    };
-  }, [filmIndex]);
+  if (timer) {
+    clearTimeout(timer);
+  }
+
+  const newTimer = setTimeout(() => {
+    autoProgressNextFilm();
+  }, 8000);
+
+  setTimer(newTimer);
+
+  return () => {
+    clearTimeout(newTimer);
+  };
+}, [filmIndex]);
 
 
 const sortFilmsByReleaseDate = () => {
   const sorted_films = [...films];
   sorted_films.sort((a, b) => a.release_date - b.release_date);
   setFilms(sorted_films)
+  setFilmIndex(0)
 }
-
 
 const film = films[filmIndex]
 
-// const handleNextClick = () => {
-//   if (filmIndex < filmData.length - 1) {
-//     setFilmIndex((index) => index + 1)
-//   }
-// }
-
 const pauseToggle = () => {
-    setIsPaused(!isPaused)
+  setIsPaused(!isPaused)
 
-    if (!isPaused) {
-        if (timer) {
-            clearTimeout(timer);
-        }
-    const newTimer = setTimeout(() => {
-        autoProgressNextFilm();
-    }, 4000);
-    setTimer(newtimer);
+  if (!isPaused) {
+    if (timer) {
+      clearTimeout(timer);
     }
+  const newTimer = setTimeout(() => {
+    autoProgressNextFilm();
+  }, 4000);
+  setTimer(newtimer);
+  }
 }
 
 
@@ -81,25 +75,29 @@ const handleStartOver = () => {
   clearTimeout(timer)
 }
 
-
-
-  return (
-    <div>
-          <div className="fullBox">
-            <h2>{film.title}</h2>
-            <p>{film.original_title}</p>
-            <img src={film.image} alt={film.title} />
-            <p>Release Date: {film.release_date}</p>
-            <p>Decription: {film.description}</p>
-            <button onClick={sortFilmsByReleaseDate}>SORT BY RELESE DATE</button>
-            <button onClick={handleBackClick}>BACK</button>
-            <button className='pauseButton' onClick={pauseToggle}>
-                {isPaused ? 'Pause' : 'Play'}
-            </button>
-            <button onClick={handleStartOver}>START OVER</button>
-            <button onClick={autoProgressNextFilm}>NEXT</button>
-          </div>
+return (
+<>
+  <div className="banner-container" style={{ backgroundImage: `url(${film.movie_banner})`}}>
+      <h2>{film.title}</h2>
+      <p>{film.original_title}</p>
+    <div className="body-container">
+      <div className="posterBox">
+        <img className="poster" src={film.image} alt={film.title} />
+      </div>
+      <div className="infoBox">
+      <p>Release Date: {film.release_date}</p>
+      <p>Decription: {film.description}</p>
+      </div>
     </div>
+  </div>
+      <button onClick={sortFilmsByReleaseDate}>SORT BY RELESE DATE</button>
+      <button onClick={handleBackClick}>BACK</button>
+      <button className='pauseButton' onClick={pauseToggle}>
+        {isPaused ? 'Pause' : 'Play'}
+      </button>
+      <button onClick={handleStartOver}>START OVER</button>
+      <button onClick={autoProgressNextFilm}>NEXT</button>
+  </>
   );
 }
 
